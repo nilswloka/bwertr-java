@@ -8,6 +8,7 @@ public class BwertrDriver {
     private WebDriver webDriver = new HtmlUnitDriver();
     private final WelcomePage welcomePage = new WelcomePage(webDriver);
     private final ThankYouPage thankYouPage = new ThankYouPage(webDriver);
+    private ResultsPage resultsPage = new ResultsPage(webDriver);
 
     public WelcomePage getWelcomePage() {
         return welcomePage;
@@ -26,4 +27,11 @@ public class BwertrDriver {
         getWelcomePage().rateWith(rating);
     }
 
+    public void visitResults() {
+        webDriver.get("http://localhost:8080/results");
+    }
+
+    public ResultsPage getResultsPage() {
+        return resultsPage;
+    }
 }
