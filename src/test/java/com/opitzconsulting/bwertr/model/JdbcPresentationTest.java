@@ -1,7 +1,7 @@
 package com.opitzconsulting.bwertr.model;
 
 import org.junit.Test;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,9 +15,9 @@ import static org.mockito.Mockito.when;
 
 public class JdbcPresentationTest {
 
-    private SimpleJdbcTemplate simpleJdbcTemplate = mock(SimpleJdbcTemplate.class);
+    private JdbcTemplate jdbcTemplate = mock(JdbcTemplate.class);
     private Ratings ratings = mock(Ratings.class);
-    private Presentation presentation = new JdbcPresentation(simpleJdbcTemplate, ratings);
+    private Presentation presentation = new JdbcPresentation(jdbcTemplate, ratings);
 
     @Test
     public void withOneRating_averageRating_shouldReturnTextForThatRating() {
@@ -70,7 +70,7 @@ public class JdbcPresentationTest {
             rowWithRating.put("RATING", rating);
             resultWithRatings.add(rowWithRating);
         }
-        when(simpleJdbcTemplate.queryForList(anyString())).thenReturn(resultWithRatings);
+        when(jdbcTemplate.queryForList(anyString())).thenReturn(resultWithRatings);
     }
 
     private void andTextForRating(String textForThatRating, int rating) {
