@@ -2,7 +2,7 @@ package com.opitzconsulting.bwertr.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,15 +16,15 @@ import static org.mockito.Mockito.when;
 
 public class JdbcPresentationTest {
 
-    private SimpleJdbcTemplate simpleJdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
     private Ratings ratings;
     private Presentation jdbcPresentation;
 
     @Before
     public void setUp() throws Exception {
-        simpleJdbcTemplate = mock(SimpleJdbcTemplate.class);
+        jdbcTemplate = mock(JdbcTemplate.class);
         ratings = mock(Ratings.class);
-        jdbcPresentation = new JdbcPresentation(simpleJdbcTemplate, ratings);
+        jdbcPresentation = new JdbcPresentation(jdbcTemplate, ratings);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class JdbcPresentationTest {
             rowForRating.put("RATING", rating);
             listWithRatingRows.add(rowForRating);
         }
-        when(simpleJdbcTemplate.queryForList(anyString())).thenReturn(listWithRatingRows);
+        when(jdbcTemplate.queryForList(anyString())).thenReturn(listWithRatingRows);
     }
 
     private void andGivenTextForRating(String textForRating, int rating) {
