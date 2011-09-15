@@ -20,6 +20,7 @@ If you wish to deploy to CloudFoundry, follow these steps:
 
 Make sure to configure a MySQL service for the application.
 
+
 The bwertr kata
 ===============
 
